@@ -1,0 +1,4 @@
+org\mongodb\Customer.class
+org\mongodb\Customers.class
+org\mongodb\ConnectionBase.class
+org\mongodb\Kill.class
