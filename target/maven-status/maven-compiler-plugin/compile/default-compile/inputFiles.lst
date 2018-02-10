@@ -1,4 +1,5 @@
 D:\HerokuProject\GG\webserva\src\main\java\service\Musique.java
+D:\HerokuProject\GG\webserva\src\main\java\Main.java
 D:\HerokuProject\GG\webserva\src\main\java\service\MusiqueController.java
 D:\HerokuProject\GG\webserva\src\main\java\service\ResponseTransformer.java
 D:\HerokuProject\GG\webserva\src\main\java\service\ConnectionBase.java
@@ -14,5 +15,4 @@ D:\HerokuProject\GG\webserva\src\main\java\service\JeuController.java
 D:\HerokuProject\GG\webserva\src\main\java\service\UserDAO.java
 D:\HerokuProject\GG\webserva\src\main\java\service\JsonUtil.java
 D:\HerokuProject\GG\webserva\src\main\java\service\UserController.java
-D:\HerokuProject\GG\webserva\src\main\java\com\mycompany\webservicemaven\Main.java
 D:\HerokuProject\GG\webserva\src\main\java\service\JsonTransformer.java
