@@ -107,7 +107,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <mainClass>Main</mainClass>
+                            <mainClass>${basedir}/src/main/java/com/mycompany/webservicemaven/Main</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
