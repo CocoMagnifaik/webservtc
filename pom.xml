@@ -120,7 +120,7 @@
 			<configuration>
 				<jdkVersion>1.8</jdkVersion>
 				<!-- Use your own application name -->
-				<appName>spark-heroku-webservice</appName> 
+				<appName>webservtc</appName> 
 				<processTypes>
 					<web>java -jar ./target/tiacaraks2-1.0-jar-with-dependencies.jar</web>
 				</processTypes>
