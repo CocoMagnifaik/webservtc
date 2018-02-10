@@ -122,7 +122,7 @@
 				<!-- Use your own application name -->
 				<appName>webservtc</appName> 
 				<processTypes>
-					<web>java -jar ./target/tiacaraks2-1.0-jar-with-dependencies.jar</web>
+					<web>java -jar ./target/tiacaraks2-jar-with-dependencies.jar</web>
 				</processTypes>
 			</configuration>
 		</plugin>
