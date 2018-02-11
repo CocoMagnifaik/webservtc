@@ -87,6 +87,37 @@ public class MusiqueDAO {
             return tabMusique;		
         }
 
+		public Musique[] findMusiqueIdTitre(String ids, String titre) throws Exception {            
+            Musique[] tabMusique=null;
+            Vector listMusic = new Vector();
+            DBCursor cursor = null;
+            try {
+                DB db = mon.getConnection();
+                DBCollection table = db.getCollection("chanson");
+                BasicDBObject searchQuery = new BasicDBObject();
+                searchQuery.put("titre", titre);
+                cursor = table.find(searchQuery);
+                DBObject dObject=null;
+                while (cursor.hasNext()) {
+                    dObject = cursor.next();
+                    ids = String.valueOf((ObjectId)(dObject.get("_id")));
+                    String categorie = String.valueOf(dObject.get("categorie"));
+                    String artiste = String.valueOf(dObject.get("artiste"));
+                    String titres = String.valueOf(dObject.get("titre"));
+                    String fichier = String.valueOf(dObject.get("fichier"));
+                    String paroles = String.valueOf(dObject.get("paroles"));
+
+                    Musique temporaire = new Musique(ids, categorie, artiste, titres, fichier, paroles);
+                    listMusic.add(temporaire);
+                }
+                tabMusique = new Musique[listMusic.size()];
+                listMusic.copyInto(tabMusique);
+            } catch(MongoException e){
+                e.printStackTrace();
+            }
+            return tabMusique;		
+        }
+		
     public void insertMusique(String categorie, String artiste, String titre, String fichier, String paroles) throws Exception{
         try {
             DB db = mon.getConnection();
