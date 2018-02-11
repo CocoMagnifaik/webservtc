@@ -16,14 +16,18 @@ public class Musique {
     private String titre;
     private String fichier;
     private String paroles;
+    private String minutage;
+    private String valiny;
 
-    public Musique(String id, String categorie, String artiste, String titre, String fichier, String paroles) {
+    public Musique(String id, String categorie, String artiste, String titre, String fichier, String paroles, String minutage, String valiny) {
         this.id = id;
         this.categorie = categorie;
         this.artiste = artiste;
         this.titre = titre;
         this.fichier = fichier;
         this.paroles = paroles;
+        this.minutage = minutage;
+        this.valiny = valiny;
     }
 
     public String getId() {
@@ -72,5 +76,22 @@ public class Musique {
 
     public void setParoles(String paroles) {
         this.paroles = paroles;
+    }
+
+	
+    public String getMinutage() {
+        return minutage;
+    }
+
+    public void setMinutage(String minutage) {
+        this.minutage = minutage;
+    }
+
+    public String getValiny() {
+        return valiny;
+    }
+
+    public void setValiny(String valiny) {
+        this.valiny = valiny;
     }
 }

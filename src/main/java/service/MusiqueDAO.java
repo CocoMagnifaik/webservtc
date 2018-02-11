@@ -37,8 +37,10 @@ public class MusiqueDAO {
                     String titre = String.valueOf(dObject.get("titre"));
                     String fichier = String.valueOf(dObject.get("fichier"));
                     String paroles = String.valueOf(dObject.get("paroles"));
+                    String minutage = String.valueOf(dObject.get("minutage"));
+                    String valiny = String.valueOf(dObject.get("valiny"));
 
-                    Musique temporaire = new Musique(id, categorie, artiste, titre, fichier, paroles);
+                    Musique temporaire = new Musique(id, categorie, artiste, titre, fichier, paroles, minutage, valiny);
                     listMusic.add(temporaire);
                 }
                 tabMusique = new Musique[listMusic.size()];
@@ -106,8 +108,10 @@ public class MusiqueDAO {
                     String titres = String.valueOf(dObject.get("titre"));
                     String fichier = String.valueOf(dObject.get("fichier"));
                     String paroles = String.valueOf(dObject.get("paroles"));
+                    String minutage = String.valueOf(dObject.get("minutage"));
+                    String valiny = String.valueOf(dObject.get("valiny"));
 
-                    Musique temporaire = new Musique(ids, categorie, artiste, titres, fichier, paroles);
+                    Musique temporaire = new Musique(ids, categorie, artiste, titres, fichier, paroles, minutage, valiny);
                     listMusic.add(temporaire);
                 }
                 tabMusique = new Musique[listMusic.size()];
@@ -118,7 +122,7 @@ public class MusiqueDAO {
             return tabMusique;		
         }
 		
-    public void insertMusique(String categorie, String artiste, String titre, String fichier, String paroles) throws Exception{
+    public void insertMusique(String categorie, String artiste, String titre, String fichier, String paroles, String minutage, String valiny) throws Exception{
         try {
             DB db = mon.getConnection();
             DBCollection table = db.getCollection("chanson");
@@ -128,6 +132,8 @@ public class MusiqueDAO {
             document.put("titre",titre);
             document.put("fichier",fichier);
             document.put("paroles",paroles);
+			document.put("minutage",minutage);
+			document.put("valiny",valiny);
             table.insert(document);
         } catch(MongoException e){
             e.printStackTrace();
