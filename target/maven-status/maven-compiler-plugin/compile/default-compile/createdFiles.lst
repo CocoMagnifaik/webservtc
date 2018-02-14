@@ -1,0 +1,3 @@
+service\Categorie.class
+service\CategorieDAO.class
+service\CategorieController.class

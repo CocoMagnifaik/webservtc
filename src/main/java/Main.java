@@ -5,9 +5,11 @@
  */
 /**
  *
- * @author CEDRICK
+ * @author Coco
  */
 
+import service.CategorieController;
+import service.CategorieDAO;
 import service.Customers;
 import service.JeuController;
 import service.JeuDAO;
@@ -32,6 +34,7 @@ new UserController(new Customers());
 new UtilisateurController(new UserDAO());
 new MusiqueController(new MusiqueDAO());
 new JeuController(new JeuDAO());
+new CategorieController(new CategorieDAO());
     enableCORS(origin,methods,headers);
 }
 static int getHerokuAssignedPort() {
