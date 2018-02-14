@@ -15,7 +15,7 @@ import java.util.Vector;
 import org.bson.types.ObjectId;
 /**
  *
- * @author Coco
+ * @author CEDRICK
  */
 public class UserDAO {
     	ConnectionBase mon = new ConnectionBase();
@@ -83,26 +83,41 @@ public class UserDAO {
             return tabCustomers;		
         }
 
-        public DBCursor findUsers(String pseudo,String mdp) {
+        
+       		public User[] findUsers(String nom,String pwd) throws Exception{
+            User[] tabCustomers = null;
+            Vector listUser = new Vector();
             DBCursor cursor = null;
             try {
                 DB db = mon.getConnection();
                 DBCollection table = db.getCollection("users");
                 BasicDBObject searchQuery = new BasicDBObject();
-                searchQuery.put("pseudo", pseudo);
-                searchQuery.put("mdp",mdp);
+                searchQuery.put("pseudo", nom);
+                searchQuery.put("mdp",pwd);
 
                 cursor = table.find(searchQuery);
+                DBObject dObject = null;
                 while (cursor.hasNext()) {
-                        System.out.println(cursor.next());
+                    dObject = cursor.next();
+                    String id = String.valueOf((ObjectId)(dObject.get("_id")));
+                    String email = String.valueOf(dObject.get("email"));
+                    String pseudo = String.valueOf(dObject.get("pseudo"));
+                    String mdp = String.valueOf(dObject.get("mdp"));
+                    String sexe = String.valueOf(dObject.get("sexe"));
+                    String nationalite = String.valueOf(dObject.get("nationalite"));
+                    String statut = String.valueOf(dObject.get("statut"));
+
+                    User temporaire = new User(id, email, pseudo, mdp, sexe, nationalite, statut);
+                    listUser.add(temporaire);
                 }
+                tabCustomers = new User[listUser.size()];
+                listUser.copyInto(tabCustomers);
             } catch(MongoException e){
                 e.printStackTrace();
             }
-            return cursor;		
-	}
-                
-	       
+            return tabCustomers;		
+		}
+       
                 
 	public String insertUsers(User x) {
              User us=null;

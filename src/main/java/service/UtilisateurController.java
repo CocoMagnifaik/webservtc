@@ -15,14 +15,14 @@ import static spark.Spark.*;
 
 /**
  *
- * @author Coco
+ * @author CEDRICK
  */
 public class UtilisateurController {
     
 public UtilisateurController(final UserDAO Utilisateurservice) {
     
 Gson gson = new Gson();
-get("/utilisateurs", (req, res) -> Utilisateurservice.listUser(), gson::toJson);
+    get("/utilisateurs", (req, res) -> Utilisateurservice.listUser(), gson::toJson);
 get("/findUserById/:id", (req, res) -> {
 
 String id = req.params(":id");
@@ -39,6 +39,24 @@ res.status(400);
 return new ResponseError("No user with id '%s' found", id);
 },  gson::toJson);
 
+    get("/findUsers/:nom/:mdp", (req, res) -> {
+
+String nom = req.params(":nom");
+String mdp = req.params(":mdp");
+User[] user=null;
+    try {
+        user = Utilisateurservice.findUsers(nom,mdp);
+    } catch (Exception ex) {
+        Logger.getLogger(UtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+if (user != null) {
+return user;
+}
+res.status(400);
+return new ResponseError("No user with id '%s' found", nom);
+},  gson::toJson);
+
+
     
 post ( "/createUser" , ( req , res ) -> {
     res.type("application/json");
@@ -46,6 +64,6 @@ post ( "/createUser" , ( req , res ) -> {
     UserDAO ud=new UserDAO();
     return ud.insertUsers(u);
 }, gson::toJson);
-  
+
 }
 }
