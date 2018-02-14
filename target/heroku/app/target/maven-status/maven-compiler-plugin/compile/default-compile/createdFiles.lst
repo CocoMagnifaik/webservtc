@@ -1,3 +1,4 @@
 service\Categorie.class
 service\CategorieDAO.class
+com\mycompany\webservicemaven\Main.class
 service\CategorieController.class
