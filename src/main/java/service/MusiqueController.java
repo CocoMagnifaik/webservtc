@@ -38,7 +38,12 @@ get("/findTitreMusicById/:id", (req, res) -> {
 
 String id = req.params(":id");
 
-String titreMusicId = userService.findTitreMusicById(id);
+String titreMusicId=null;
+    try {
+        titreMusicId = userService.findTitreMusicById(id);
+    } catch (Exception ex) {
+        Logger.getLogger(MusiqueController.class.getName()).log(Level.SEVERE, null, ex);
+    }
 
 if (titreMusicId != null) {
 
@@ -52,22 +57,5 @@ return new ResponseError("No user with id '%s' found", id);
 
 }, gson::toJson);
 
-get("/findMusiqueIdTitre/:id/:titre", (req, res) -> {
-
-String id = req.params(":id");
-String titre = req.params(":titre");
-Musique []  zika=null;
-    try {
-        zika = userService.findMusiqueIdTitre(id,titre);
-    } catch (Exception ex) {
-        Logger.getLogger(MusiqueController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-if (zika != null) {
-return zika;
-}
-res.status(400);
-return new ResponseError("No user with id '%s' found", id);
-
-}, gson::toJson);
 }
 }

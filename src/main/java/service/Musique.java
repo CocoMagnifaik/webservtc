@@ -15,16 +15,18 @@ public class Musique {
     private String artiste;
     private String titre;
     private String fichier;
+    private String image;
     private String paroles;
     private String minutage;
     private String valiny;
 
-    public Musique(String id, String categorie, String artiste, String titre, String fichier, String paroles, String minutage, String valiny) {
+    public Musique(String id, String categorie, String artiste, String titre, String fichier, String image, String paroles, String minutage, String valiny) {
         this.id = id;
         this.categorie = categorie;
         this.artiste = artiste;
         this.titre = titre;
         this.fichier = fichier;
+        this.image = image;
         this.paroles = paroles;
         this.minutage = minutage;
         this.valiny = valiny;
@@ -70,6 +72,14 @@ public class Musique {
         this.fichier = fichier;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     public String getParoles() {
         return paroles;
     }
@@ -78,7 +88,6 @@ public class Musique {
         this.paroles = paroles;
     }
 
-	
     public String getMinutage() {
         return minutage;
     }
@@ -93,5 +102,5 @@ public class Musique {
 
     public void setValiny(String valiny) {
         this.valiny = valiny;
-    }
+    }    
 }
