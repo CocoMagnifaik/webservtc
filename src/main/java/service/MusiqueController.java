@@ -9,15 +9,16 @@ import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 /**
  *
- * @author CEDRICK
+ * @author Coco
  */
 public class MusiqueController {
     public MusiqueController(final MusiqueDAO userService) {
 Gson gson = new Gson();
-get("/musiqueTotal", (req, res) -> userService.listMusique(), gson::toJson);
+    get("/musiqueTotal", (req, res) -> userService.listMusique(), gson::toJson);
 get("/findMusicById/:id", (req, res) -> {
 
 String id = req.params(":id");
@@ -38,12 +39,7 @@ get("/findTitreMusicById/:id", (req, res) -> {
 
 String id = req.params(":id");
 
-String titreMusicId=null;
-    try {
-        titreMusicId = userService.findTitreMusicById(id);
-    } catch (Exception ex) {
-        Logger.getLogger(MusiqueController.class.getName()).log(Level.SEVERE, null, ex);
-    }
+String titreMusicId = userService.findTitreMusicById(id);
 
 if (titreMusicId != null) {
 
@@ -57,5 +53,29 @@ return new ResponseError("No user with id '%s' found", id);
 
 }, gson::toJson);
 
+    get("/findMusiqueIdTitre/:id/:titre", (req, res) -> {
+
+String id = req.params(":id");
+String titre = req.params(":titre");
+Musique []  zika=null;
+    try {
+        zika = userService.findMusiqueIdTitre(id,titre);
+    } catch (Exception ex) {
+        Logger.getLogger(MusiqueController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+if (zika != null) {
+return zika;
 }
+res.status(400);
+return new ResponseError("No user with id '%s' found", id);
+
+}, gson::toJson);
+    
+    
+
+   
+}
+    
+  
+    
 }
