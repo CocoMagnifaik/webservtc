@@ -83,61 +83,46 @@ public class UserDAO {
             return tabCustomers;		
         }
 
-        
-       		public User[] findUsers(String nom,String pwd) throws Exception{
-            User[] tabCustomers = null;
-            Vector listUser = new Vector();
+        public DBCursor findUsers(String pseudo,String mdp) {
             DBCursor cursor = null;
             try {
                 DB db = mon.getConnection();
                 DBCollection table = db.getCollection("users");
                 BasicDBObject searchQuery = new BasicDBObject();
-                searchQuery.put("pseudo", nom);
-                searchQuery.put("mdp",pwd);
+                searchQuery.put("pseudo", pseudo);
+                searchQuery.put("mdp",mdp);
 
                 cursor = table.find(searchQuery);
-                DBObject dObject = null;
                 while (cursor.hasNext()) {
-                    dObject = cursor.next();
-                    String id = String.valueOf((ObjectId)(dObject.get("_id")));
-                    String email = String.valueOf(dObject.get("email"));
-                    String pseudo = String.valueOf(dObject.get("pseudo"));
-                    String mdp = String.valueOf(dObject.get("mdp"));
-                    String sexe = String.valueOf(dObject.get("sexe"));
-                    String nationalite = String.valueOf(dObject.get("nationalite"));
-                    String statut = String.valueOf(dObject.get("statut"));
-
-                    User temporaire = new User(id, email, pseudo, mdp, sexe, nationalite, statut);
-                    listUser.add(temporaire);
+                        System.out.println(cursor.next());
                 }
-                tabCustomers = new User[listUser.size()];
-                listUser.copyInto(tabCustomers);
             } catch(MongoException e){
                 e.printStackTrace();
             }
-            return tabCustomers;		
-		}
-       
+            return cursor;		
+	}
                 
-	public String insertUsers(User x) {
+	       
+                
+	public User insertUsers(String email, String pseudo, String mdp, String sexe, String nationalite,String status) {
              User us=null;
             try {
                 //User us=null;
                 DB db = mon.getConnection();
                 DBCollection table = db.getCollection("users");
                 BasicDBObject document = new BasicDBObject();
-                document.put("email", x.getEmail());
-                document.put("pseudo", x.getPseudo());
-                document.put("mdp",x.getMdp());
-                document.put("sexe",x.getSexe());
-                document.put("nationalite",x.getNationalite());
-                document.put("statut",x.getStatut());
+                document.put("email", email);
+                document.put("pseudo", pseudo);
+                document.put("mdp",mdp);
+                document.put("sexe",sexe);
+                document.put("nationalite",nationalite);
+                document.put("statut",0);
                 table.insert(document);
-         
+                us=new User(email,pseudo,mdp,sexe,nationalite,status);
             } catch(MongoException e){
                 e.printStackTrace();
             }
-            return "add";
+            return us;
 	}
 	public void deleteUsers(String email) throws Exception{
             try {

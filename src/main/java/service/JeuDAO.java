@@ -66,7 +66,8 @@ public class JeuDAO {
             return tabJeu;		
         }
 
-    public void insertJeu(String idJoueur, String idChanson, String points) throws Exception{
+    public Jeu insertJeu(String idJoueur, String idChanson, String points) throws Exception{
+       Jeu j=null;
         try {
             DB db = mon.getConnection();
             DBCollection table = db.getCollection("jeu");
@@ -75,10 +76,13 @@ public class JeuDAO {
             document.put("idChanson", idChanson);
             document.put("points",points);
             table.insert(document);
+            j= new Jeu(idJoueur,idChanson,points);
         } catch(MongoException e){
             e.printStackTrace();
         }
+        return j;
     }
+    
     
     	public void deleteJeu(String id) throws Exception{
             try {

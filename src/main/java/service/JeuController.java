@@ -8,7 +8,10 @@ package service;
 import com.google.gson.Gson;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import static spark.Spark.after;
+import static spark.Spark.exception;
 import static spark.Spark.get;
+import static spark.Spark.post;
 
 /**
  *
@@ -41,7 +44,18 @@ return new ResponseError("No user with id '%s' found", id);
 
 }, gson::toJson);
 
+get("/createGame/:idJoueur/:idChanson/:points", (req, res) -> userService.insertJeu(
+req.queryParams("idJoueur"),
+req.queryParams("idChanson"),
+req.queryParams("points")
 
+), gson::toJson);
+
+after((req, res) -> {
+			res.type("application/json");
+		});
+
+		
 
 }
 }

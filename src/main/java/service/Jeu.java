@@ -21,7 +21,11 @@ public class Jeu {
         this.idChanson = idChanson;
         this.points = points;
     }
-
+        public Jeu(String idJoueur, String idChanson, String points) {
+        this.idJoueur = idJoueur;
+        this.idChanson = idChanson;
+        this.points = points;
+    }
     public String getId() {
         return id;
     }
