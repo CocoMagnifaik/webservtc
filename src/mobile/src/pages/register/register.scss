@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
+page-register {
+    .bg {
+        height: 100%;
+        width: 100%;
+        background: url('../assets/imgs/fond2.png') no-repeat center fixed;
+    }
+
+    .inputs {
+        position: absolute;
+        display: block;
+        top: 60%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        color: #fff;
+        opacity: 0.9;
+        background: rgba(0,0,0,0.8);
+    }
+}
