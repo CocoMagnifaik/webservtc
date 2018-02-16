@@ -39,7 +39,23 @@ res.status(400);
 return new ResponseError("No user with id '%s' found", id);
 },  gson::toJson);
 
-    
+     get("/findUsers/:nom/:mdp", (req, res) -> {
+
+String nom = req.params(":nom");
+String mdp = req.params(":mdp");
+User[] user=null;
+    try {
+        user = Utilisateurservice.findUsers(nom,mdp);
+    } catch (Exception ex) {
+        Logger.getLogger(UtilisateurController.class.getName()).log(Level.SEVERE, null, ex);
+    }
+if (user != null) {
+return user;
+}
+res.status(400);
+return new ResponseError("No user with id '%s' found", nom);
+},  gson::toJson);
+
 /*post ( "/createUser" , ( req , res ) -> {
     res.type("application/json");
     User u=gson.fromJson(req.body(),User.class);
@@ -48,12 +64,12 @@ return new ResponseError("No user with id '%s' found", id);
 }, gson::toJson);*/
 
 get("/createuser/:email/:pseudo/:mdp/:sexe/:nationalite/:status", (req, res) -> Utilisateurservice.insertUsers(
-req.queryParams(":email"),
-req.queryParams(":pseudo"),
-req.queryParams(":mdp"),
-req.queryParams(":sexe"),
-req.queryParams(":nationalite"),
-req.queryParams(":status")
+req.queryParams("email"),
+req.queryParams("pseudo"),
+req.queryParams("mdp"),
+req.queryParams("sexe"),
+req.queryParams("nationalite"),
+req.queryParams("status")
 
 ), gson::toJson);
 

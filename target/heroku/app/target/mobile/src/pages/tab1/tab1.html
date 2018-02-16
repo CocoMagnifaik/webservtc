@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Cat&eacute;gorie</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list class="accordion-list" style="background:url('../assets/imgs/categorie.jpg') no-repeat center fixed;">
+    <ion-list-header no-lines no-padding>
+      <!-- Toggle Button -->
+      <ion-list *ngIf="malagasy">
+        <button ion-item (click)="toggleSection2()" detail-none [ngClass]="{'section-active': malagasy.open, 'section': !malagasy.open}" style=" background: url('../assets/imgs/madadrap.png') no-repeat; color:#fff;">
+          <ion-icon item-left name="arrow-forward" *ngIf="!malagasy.open"></ion-icon>
+          <ion-icon item-left name="arrow-down" *ngIf="malagasy.open"></ion-icon>
+          {{ malagasy.valeur }}
+        </button>
+      </ion-list>
+
+      <ion-list *ngIf="francais">
+        <button ion-item (click)="toggleSection3()" detail-none [ngClass]="{'section-active': francais.open, 'section': !francais.open}" style=" background: url('../assets/imgs/francdrap.png') no-repeat; color:#fff;">
+          <ion-icon item-left name="arrow-forward" *ngIf="!francais.open"></ion-icon>
+          <ion-icon item-left name="arrow-down" *ngIf="francais.open"></ion-icon>
+          {{ francais.valeur }}
+        </button>
+      </ion-list>
+
+      <ion-list *ngFor="let item of information; let i = index">
+      <ion-list *ngIf="malagasy.open && item.categorie == 'Malagasy'">
+      <!-- Direct Add Button   as Fallback -->
+        <ion-thumbnail item-start>
+        <div class="row">  
+          <img src="">
+          <h2><strong> {{ item.artiste }} - {{ item.titre }} </strong></h2>
+          <button ion-button outline item-end (click)="viewFicheMusic(item)"><ion-icon ios="ios-play" md="md-play">Play Karaoke</ion-icon></button>
+        </div>
+      </ion-thumbnail>
+      </ion-list>
+
+      <ion-list *ngIf="francais.open && item.categorie == 'Francais'">
+        <!-- Direct Add Button   as Fallback -->
+          <ion-thumbnail item-start>
+          <div class="row">  
+            <img src="">
+            <h2><strong> {{ item.artiste }} - {{ item.titre }} </strong></h2>
+            <button ion-button outline item-end (click)="viewFicheMusic(item)"><ion-icon ios="ios-play" md="md-play">Play Karaoke</ion-icon></button>
+          </div>
+        </ion-thumbnail>
+        </ion-list>
+    </ion-list>
+    </ion-list-header>
+  </ion-list>
+</ion-content>
