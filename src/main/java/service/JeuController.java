@@ -45,16 +45,16 @@ return new ResponseError("No user with id '%s' found", id);
 }, gson::toJson);
 
 get("/createGame/:idJoueur/:idChanson/:points", (req, res) -> userService.insertJeu(
-req.queryParams("idJoueur"),
-req.queryParams("idChanson"),
-req.queryParams("points")
+req.queryParams(":idJoueur"),
+req.queryParams(":idChanson"),
+req.queryParams(":points")
 
 ), gson::toJson);
 
 after((req, res) -> {
 			res.type("application/json");
 		});
-
+                
 		
 
 }

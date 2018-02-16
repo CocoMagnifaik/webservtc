@@ -48,13 +48,17 @@ return new ResponseError("No user with id '%s' found", id);
 }, gson::toJson);*/
 
 get("/createuser/:email/:pseudo/:mdp/:sexe/:nationalite/:status", (req, res) -> Utilisateurservice.insertUsers(
-req.queryParams("email"),
-req.queryParams("pseudo"),
-req.queryParams("mdp"),
-req.queryParams("sexe"),
-req.queryParams("nationalite"),
-req.queryParams("status")
+req.queryParams(":email"),
+req.queryParams(":pseudo"),
+req.queryParams(":mdp"),
+req.queryParams(":sexe"),
+req.queryParams(":nationalite"),
+req.queryParams(":status")
 
 ), gson::toJson);
+
+    
+
+
 }
 }
