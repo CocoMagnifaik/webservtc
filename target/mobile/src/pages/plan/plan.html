@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    </ion-buttons>
+    <ion-title>Plan</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+
+  <div class="item item-body">
+    <h1 align="center"> Recherche sur les morceaux </h1>
+
+    <ion-toolbar color="primary">
+      <ion-searchbar (input)="getItems($event)"></ion-searchbar>
+    </ion-toolbar>
+
+      <ion-list  *ngFor="let item of information">
+
+        {{ item.titre }}  <ion-icon md="ios-mic"></ion-icon>
+
+
+
+
+    </ion-list>
+  </div>
+
+</ion-content>
+

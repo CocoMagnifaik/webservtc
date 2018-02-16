@@ -1,0 +1,35 @@
+<ion-content text-center>
+  <div class="bg">
+    <div class="head" text-center>
+      <h1> <img src="assets/imgs/logo.png"></h1>
+    </div>
+
+    <div class="inputs">
+      <ion-item>
+        <ion-input [(ngModel)]="pseudo" type="text" placeholder="Pseudo"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-input [(ngModel)]="email" type="mail" placeholder="Email"></ion-input>
+      </ion-item>
+      <ion-item class="pass">
+        <ion-input [(ngModel)]="pwd" type="password" placeholder="Mot de passe"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-select [(ngModel)]="sexe" placeholder="Sexe">
+          <ion-option value="f">Homme</ion-option>
+          <ion-option value="m">Femme</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-select [(ngModel)]="nationalite" placeholder="Nationalite">
+          <ion-option value="mg">Malagasy</ion-option>
+          <ion-option value="fr">Francais</ion-option>
+          <ion-option value="eng">Autre</ion-option>
+        </ion-select>
+      </ion-item>
+      <button style="margin-top:15px; height:35px;font-size:14px;background:rgb(42, 99, 27);" ion-button full (click)="doRegister()"><b>Valider</b></button>
+    </div>
+  </div>
+</ion-content>
